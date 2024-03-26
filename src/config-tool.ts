@@ -10,7 +10,7 @@ const getSeedConfig = () => {
 
 const generateSeedString = () => {
   const seed = getSeedConfig();
-  let seedString = '';
+  let seedString = seed.CustomSeed;
   if (seed.MachineId) {
     seedString += ('-' + vscode.env.machineId);
   }
