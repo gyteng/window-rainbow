@@ -1,0 +1,63 @@
+{
+  "name": "window-rainbow",
+  "displayName": "Window Rainbow",
+  "description": "",
+  "publisher": "Gyteng",
+  "version": "0.0.3",
+  "engines": {
+    "vscode": "^1.87.0"
+  },
+  "repository": {
+    "url": "https://github.com/gyteng/window-rainbow"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "window-rainbow.random",
+        "title": "Change Random Colors"
+      }
+    ],
+    "configuration": {
+      "title": "WindowRainbow",
+      "properties": {
+        "window-rainbow.seed.MachineId": {
+          "type": "boolean",
+          "default": true,
+          "description": "abcdefg."
+        },
+        "window-rainbow.seed.ProjectPath": {
+          "type": "boolean",
+          "default": true,
+          "description": "qwerty0."
+        },
+        "window-rainbow.seed.ProjectName": {
+          "type": "boolean",
+          "default": true,
+          "description": "qwerty."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.87.0",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
