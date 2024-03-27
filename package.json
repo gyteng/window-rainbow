@@ -3,7 +3,7 @@
   "displayName": "Window Rainbow",
   "description": "",
   "publisher": "Gyteng",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -30,21 +30,25 @@
         "window-rainbow.seed.MachineId": {
           "type": "boolean",
           "default": true,
-          "description": "abcdefg."
+          "scope": "application",
+          "description": "MachineId"
         },
         "window-rainbow.seed.ProjectPath": {
           "type": "boolean",
           "default": true,
-          "description": "qwerty0."
+          "scope": "application",
+          "description": "ProjectPath"
         },
         "window-rainbow.seed.ProjectName": {
           "type": "boolean",
           "default": true,
-          "description": "qwerty."
+          "scope": "application",
+          "description": "ProjectName"
         },
         "window-rainbow.seed.CustomSeed": {
           "type": "string",
           "default": "",
+          "scope": "application",
           "description": "CustomSeed"
         }
       }

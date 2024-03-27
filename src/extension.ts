@@ -1,11 +1,11 @@
 import * as vscode from 'vscode';
 import { generateRandomColor, toDarkColor, toLightColor } from './color';
-import { generateSeedString, setColors } from './config-tool';
+import { generateSeedString, setColors, setCustomSeed } from './config-tool';
 
 export function activate(context: vscode.ExtensionContext) {
 
-	const changeColor = (random: string = '') => {
-		const seed = generateSeedString() + random;
+	const changeColor = () => {
+		const seed = generateSeedString();
 		const randomColor = generateRandomColor(seed);
 		const colorTheme = vscode.window.activeColorTheme;
 		let colors: any;
@@ -18,7 +18,8 @@ export function activate(context: vscode.ExtensionContext) {
 	};
 
 	let disposable = vscode.commands.registerCommand('window-rainbow.random', () => {
-		changeColor(Math.random().toString());
+		setCustomSeed(Math.random().toString().substring(2, 10));
+		changeColor();
 	});
 
 	vscode.workspace.onDidChangeConfiguration((event: vscode.ConfigurationChangeEvent) => {
