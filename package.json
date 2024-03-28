@@ -3,7 +3,7 @@
   "displayName": "Window Rainbow",
   "description": "",
   "publisher": "Gyteng",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.87.0"
   },

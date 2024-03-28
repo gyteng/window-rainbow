@@ -8,9 +8,18 @@ const getSeedConfig = () => {
   return JSON.parse(JSON.stringify(seed));
 };
 
+const generateCustomSeed = () => {
+  const seed = getSeedConfig();
+  let seedString: string = seed.CustomSeed;
+  if (seedString.includes('${appHost}')) {
+    seedString = seedString.replaceAll('${appHost}', vscode.env.appHost);
+  }
+  return seedString;
+};
+
 const generateSeedString = () => {
   const seed = getSeedConfig();
-  let seedString = seed.CustomSeed;
+  let seedString = generateCustomSeed();
   if (seed.MachineId) {
     seedString += ('-' + vscode.env.machineId);
   }
@@ -30,6 +39,7 @@ const generateSeedString = () => {
       });
     }
   }
+  console.log('seedString', seedString);
   return seedString;
 };
 
