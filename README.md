@@ -1,3 +1,3 @@
 # Window Rainbow
 
-test.
+Automatic set titlebar, activitybar and sidebar color.

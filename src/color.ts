@@ -1,9 +1,8 @@
-import * as crypto from 'crypto';
+import { md5 } from 'js-md5';
 
 const toHex = (decimal: number) => decimal.toString(16).padStart(2, '0');
 const generateRandomColor = (seed: string) => {
-  const md5 = crypto.createHash('md5');
-  const hash = md5.update(seed).digest('hex');
+  const hash = md5(seed);
   const r = parseInt(hash.substring(0, 2), 16);
   const g = parseInt(hash.substring(2, 4), 16);
   const b = parseInt(hash.substring(4, 6), 16);

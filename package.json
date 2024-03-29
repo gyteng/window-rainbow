@@ -1,9 +1,9 @@
 {
   "name": "window-rainbow",
   "displayName": "Window Rainbow",
-  "description": "",
+  "description": "Automatic set titlebar, activitybar and sidebar color",
   "publisher": "Gyteng",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -11,12 +11,13 @@
     "url": "https://github.com/gyteng/window-rainbow"
   },
   "categories": [
+    "Themes",
     "Other"
   ],
   "activationEvents": [
     "onStartupFinished"
   ],
-  "main": "./out/extension.js",
+  "browser": "./out/extension.js",
   "contributes": {
     "commands": [
       {
@@ -90,17 +91,20 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
+    "tsccompile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts"
+    "compile": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=browser"
   },
   "devDependencies": {
-    "@types/vscode": "^1.87.0",
     "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
+    "esbuild": "^0.20.2",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "js-md5": "^0.8.3"
   }
 }
