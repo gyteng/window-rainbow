@@ -3,7 +3,7 @@
   "displayName": "Window Rainbow",
   "description": "",
   "publisher": "Gyteng",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -29,7 +29,7 @@
       "properties": {
         "window-rainbow.seed.MachineId": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "scope": "application",
           "description": "MachineId"
         },
@@ -47,9 +47,27 @@
         },
         "window-rainbow.seed.CustomSeed": {
           "type": "string",
-          "default": "",
+          "default": "WindowRainbow",
           "scope": "application",
           "description": "CustomSeed"
+        },
+        "window-rainbow.controls.color": {
+          "type": "array",
+          "scope": "application",
+          "description": ".",
+          "items": {
+            "type": "string",
+            "enum": [
+              "titleBar",
+              "activityBar",
+              "sideBar"
+            ]
+          },
+          "default": [
+            "titleBar",
+            "activityBar"
+          ],
+          "uniqueItems": true
         }
       }
     }

@@ -14,7 +14,7 @@ export function activate(context: vscode.ExtensionContext) {
 		} else {
 			colors = toLightColor(randomColor);
 		}
-		setColors(colors.title, colors.activity);
+		setColors(colors);
 	};
 
 	let disposable = vscode.commands.registerCommand('window-rainbow.random', () => {
