@@ -14,6 +14,11 @@ const getControlsConfig = () => {
   return JSON.parse(JSON.stringify(controls));
 };
 
+const isAutoMode = () => {
+  const config = getControlsConfig();
+  return config.mode === 'auto';
+};
+
 const generateCustomSeed = () => {
   const seed = getSeedConfig();
   let seedString: string = seed.CustomSeed;
@@ -66,11 +71,6 @@ const setColors = (colors: Array<string>) => {
   }, vscode.ConfigurationTarget.Workspace);
 };
 
-const setCustomSeed = (data: string) => {
-  const config = vscode.workspace.getConfiguration('window-rainbow');
-  config.update('seed.CustomSeed', data, vscode.ConfigurationTarget.Global);
-};
-
 const isWorkspaceEmpty = () => {
   let workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders || workspaceFolders.length === 0) {
@@ -101,4 +101,4 @@ const isGitRepository = () => {
   return false;
 };
 
-export { generateSeedString, setColors, setCustomSeed };
+export { generateSeedString, setColors, isAutoMode };

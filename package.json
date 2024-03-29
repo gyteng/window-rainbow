@@ -3,7 +3,7 @@
   "displayName": "Window Rainbow",
   "description": "",
   "publisher": "Gyteng",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -20,41 +20,57 @@
   "contributes": {
     "commands": [
       {
-        "command": "window-rainbow.random",
-        "title": "Change Random Colors"
+        "command": "window-rainbow.generate",
+        "title": "Generate Rainbow Colors"
       }
     ],
     "configuration": {
-      "title": "WindowRainbow",
+      "title": "Window Rainbow",
       "properties": {
         "window-rainbow.seed.MachineId": {
           "type": "boolean",
+          "order": 3,
           "default": false,
           "scope": "application",
-          "description": "MachineId"
+          "description": "Add MachineId to seed"
         },
         "window-rainbow.seed.ProjectPath": {
           "type": "boolean",
+          "order": 4,
           "default": true,
           "scope": "application",
-          "description": "ProjectPath"
+          "description": "Add ProjectPath to seed"
         },
         "window-rainbow.seed.ProjectName": {
           "type": "boolean",
+          "order": 5,
           "default": true,
           "scope": "application",
-          "description": "ProjectName"
+          "description": "Add ProjectName to seed"
         },
         "window-rainbow.seed.CustomSeed": {
           "type": "string",
-          "default": "WindowRainbow",
+          "order": 2,
+          "default": "Window Rainbow",
           "scope": "application",
-          "description": "CustomSeed"
+          "description": "Set custom seed string\nUse ${envName} to get vscode.env viriable"
+        },
+        "window-rainbow.controls.mode": {
+          "type": "string",
+          "order": 0,
+          "scope": "application",
+          "description": "Set if generate color automatically",
+          "enum": [
+            "auto",
+            "manual"
+          ],
+          "default": "auto"
         },
         "window-rainbow.controls.color": {
           "type": "array",
+          "order": 1,
           "scope": "application",
-          "description": ".",
+          "description": "Set which part of user interface will be colored",
           "items": {
             "type": "string",
             "enum": [

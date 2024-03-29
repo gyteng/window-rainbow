@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { generateRandomColor, toDarkColor, toLightColor } from './color';
-import { generateSeedString, setColors, setCustomSeed } from './config-tool';
+import { generateSeedString, setColors, isAutoMode } from './config-tool';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -8,7 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const seed = generateSeedString();
 		const randomColor = generateRandomColor(seed);
 		const colorTheme = vscode.window.activeColorTheme;
-		let colors: any;
+		let colors;
 		if (colorTheme.kind === vscode.ColorThemeKind.Dark) {
 			colors = toDarkColor(randomColor);
 		} else {
@@ -17,12 +17,14 @@ export function activate(context: vscode.ExtensionContext) {
 		setColors(colors);
 	};
 
-	let disposable = vscode.commands.registerCommand('window-rainbow.random', () => {
-		setCustomSeed(Math.random().toString().substring(2, 10));
+	let disposable = vscode.commands.registerCommand('window-rainbow.generate', () => {
 		changeColor();
 	});
 
 	vscode.workspace.onDidChangeConfiguration((event: vscode.ConfigurationChangeEvent) => {
+		if (!isAutoMode()) {
+			return;
+		}
 		if (event.affectsConfiguration('window-rainbow')) {
 			changeColor();
 		} else if (event.affectsConfiguration('workbench.colorTheme')) {
@@ -30,7 +32,9 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	changeColor();
+	if (isAutoMode()) {
+		changeColor();
+	}
 
 	context.subscriptions.push(disposable);
 }
