@@ -3,7 +3,7 @@
   "displayName": "Window Rainbow",
   "description": "Automatic set titlebar, activitybar and sidebar color",
   "publisher": "Gyteng",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "engines": {
     "vscode": "^1.87.0"
   },
@@ -90,9 +90,8 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "tsccompile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile -- --minify",
+    "watch": "npm run compile -- --sourcemap --watch",
     "compile": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=browser"
   },
   "devDependencies": {
