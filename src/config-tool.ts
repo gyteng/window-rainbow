@@ -66,7 +66,7 @@ const setColors = (colors: Array<string>) => {
     'titleBar.activeBackground': controlsConfig.color.includes('titleBar') ? colors[0] : undefined,
     'activityBar.background': controlsConfig.color.includes('activityBar') ? colors[1] : undefined,
     'sideBar.background': controlsConfig.color.includes('sideBar') ? colors[2] : undefined,
-  }, vscode.ConfigurationTarget.Global);
+  }, vscode.ConfigurationTarget.Workspace);
 };
 
 export { generateSeedString, setColors, isAutoMode };
