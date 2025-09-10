@@ -1,23 +1,35 @@
 import * as vscode from 'vscode';
 
-const getSeedConfig = () => {
+interface SeedConfig {
+  MachineId: boolean;
+  ProjectPath: boolean;
+  ProjectName: boolean;
+  CustomSeed: string;
+}
+
+interface ControlsConfig {
+  mode: 'auto' | 'manual';
+  color: Array<'titleBar' | 'activityBar' | 'sideBar'>;
+}
+
+const getSeedConfig = (): SeedConfig => {
   const config = vscode.workspace.getConfiguration('window-rainbow');
-  const seed = config.get('seed');
+  const seed = config.get<SeedConfig>('seed');
   return JSON.parse(JSON.stringify(seed));
 };
 
-const getControlsConfig = () => {
+const getControlsConfig = (): ControlsConfig => {
   const config = vscode.workspace.getConfiguration('window-rainbow');
-  const controls = config.get('controls');
+  const controls = config.get<ControlsConfig>('controls');
   return JSON.parse(JSON.stringify(controls));
 };
 
-const isAutoMode = () => {
+const isAutoMode = (): boolean => {
   const config = getControlsConfig();
   return config.mode === 'auto';
 };
 
-const generateCustomSeed = () => {
+const generateCustomSeed = (): string => {
   const seed = getSeedConfig();
   let seedString: string = seed.CustomSeed;
   const matches = seedString.match(/\$\{([a-zA-Z]{1,20})\}/);
@@ -32,7 +44,7 @@ const generateCustomSeed = () => {
   return seedString;
 };
 
-const generateSeedString = () => {
+const generateSeedString = (): string => {
   const seed = getSeedConfig();
   let seedString = generateCustomSeed();
   if (seed.MachineId) {

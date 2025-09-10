@@ -1,7 +1,8 @@
 import { md5 } from 'js-md5';
 
-const toHex = (decimal: number) => decimal.toString(16).padStart(2, '0');
-const generateRandomColor = (seed: string) => {
+const toHex = (decimal: number): string => decimal.toString(16).padStart(2, '0');
+
+const generateRandomColor = (seed: string): string => {
   const hash = md5(seed);
   const r = parseInt(hash.substring(0, 2), 16);
   const g = parseInt(hash.substring(2, 4), 16);
@@ -9,7 +10,7 @@ const generateRandomColor = (seed: string) => {
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 };
 
-const toDarkColor = (color: string) => {
+const toDarkColor = (color: string): string[] => {
   const changeColor0 = (code: number) => parseInt((code / 8 + 60).toString());
   const changeColor1 = (code: number) => parseInt((code / 8 + 48).toString());
   const changeColor2 = (code: number) => parseInt((code / 8 + 36).toString());
@@ -23,7 +24,7 @@ const toDarkColor = (color: string) => {
   ];
 };
 
-const toLightColor = (color: string) => {
+const toLightColor = (color: string): string[] => {
   const changeColor0 = (code: number) => parseInt((255 - 60 - code / 8).toString());
   const changeColor1 = (code: number) => parseInt((255 - 48 - code / 8).toString());
   const changeColor2 = (code: number) => parseInt((255 - 36 - code / 8).toString());
